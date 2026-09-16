@@ -6,7 +6,8 @@ import os
 
 N = 1 << 24
 REPETICIONES = 5
-CANTIDAD_HILOS = [1, 2, 4, 8]
+CANTIDAD_HILOS = [1, 2, 4, 8, 16]
+FRACCION_SECUENCIAL = 0.05
 
 
 def ejecutar_secuencial():
@@ -63,19 +64,23 @@ def main():
     print()
 
     print("Resultados:")
-    print("Hilos | Tiempo (ms) | Speedup")
-    print("--------------------------------")
-
+    print("Hilos | Tiempo (ms) | Speedup real | Amdahl")
+    print("---------------------------------------------")
     for hilos in CANTIDAD_HILOS:
         tiempo = ejecutar_paralelo(hilos)
         speedup = tiempo_secuencial / tiempo
 
+        speedup_amdahl = 1 / (
+            FRACCION_SECUENCIAL
+            + (1 - FRACCION_SECUENCIAL) / hilos
+        )
+
         print(
             f"{hilos:5d} | "
             f"{tiempo:11.3f} | "
-            f"{speedup:7.3f}"
+            f"{speedup:12.3f} | "
+            f"{speedup_amdahl:7.3f}"
         )
-
 
 if __name__ == "__main__":
     main()
