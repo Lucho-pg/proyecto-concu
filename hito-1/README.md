@@ -146,6 +146,13 @@ Los resultados teoricos obtenidos fueron:
 
 ---
 
+## Grafico
+
+El siguiente grafico permite comparar el speedup obtenido en las pruebas con el speedup teorico calculado mediante la Ley de Amdahl.
+
+![Speedup real vs. Ley de Amdahl](grafico_speedup.png)
+
+---
 ## Analisis de los resultados
 
 Al analizar los resultados podemos ver que aumentar la cantidad de hilos no hizo que el programa fuera mas rapido que la version secuencial.
